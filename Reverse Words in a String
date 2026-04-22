@@ -1,0 +1,36 @@
+// Problem: Reverse Words in a String
+// Platform: LeetCode
+// Approach:
+// - Use stringstream to split the string into words (automatically ignores extra spaces)
+// - Store words in a vector
+// - Reverse the vector
+// - Join words with a single space
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+class Solution {
+public:
+    string reverseWords(string s) {
+        
+        vector<string> words;
+        string word;
+        stringstream ss(s);
+
+        // Split words (ignores extra spaces automatically)
+        while(ss >> word) {
+            words.push_back(word);
+        }
+
+        // Reverse words
+        reverse(words.begin(), words.end());
+
+        // Join with single space
+        string result = "";
+        for(int i = 0; i < words.size(); i++) {
+            result += words[i];
+            if(i != words.size() - 1)
+                result += " ";
+        }
+
+        return result;
+    }
+};
