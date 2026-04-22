@@ -1,0 +1,32 @@
+// Problem: Reverse Vowels of a String
+// Platform: LeetCode
+// Approach: Two Pointers
+// - Use left and right pointers to find vowels from both ends
+// - Swap vowels and move inward
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+class Solution {
+public:
+    string reverseVowels(string s) {
+        
+        int left = 0;
+        int right = s.length() - 1;
+        string vowels = "aeiouAEIOU";
+
+        while(left < right) {
+            
+            while(left < right && vowels.find(s[left]) == string::npos)
+                left++;
+
+            while(left < right && vowels.find(s[right]) == string::npos)
+                right--;
+
+            swap(s[left], s[right]);
+
+            left++;
+            right--;
+        }
+
+        return s;
+    }
+};
