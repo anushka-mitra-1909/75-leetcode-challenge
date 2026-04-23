@@ -1,0 +1,26 @@
+// Problem: Increasing Triplet Subsequence
+// Given an integer array nums, return true if there exists:
+// i < j < k such that nums[i] < nums[j] < nums[k]
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int first = INT_MAX;
+        int second = INT_MAX;
+
+        for(int num : nums) {
+            if(num <= first) {
+                first = num;
+            }
+            else if(num <= second) {
+                second = num;
+            }
+            else {
+                return true; // num > first AND second
+            }
+        }
+
+        return false;
+    }
+};
