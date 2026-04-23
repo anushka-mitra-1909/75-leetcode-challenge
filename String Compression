@@ -1,0 +1,43 @@
+// Problem: String Compression
+// Given an array of characters, compress it in-place such that:
+// - For each group of repeating characters:
+// - If count == 1 → write the character
+// - If count > 1 → write character + count
+// - Return the new length of the compressed array
+// - Must use O(1) extra space
+//  Time Complexity: O(n)
+//  Space Complexity: O(1)
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int n = chars.size();
+        int write = 0;  // where we write
+        int i = 0;      // read pointer
+
+        while(i < n) {
+            char current = chars[i];
+            int count = 0;
+
+            // count same characters
+            while(i < n && chars[i] == current) {
+                i++;
+                count++;
+            }
+
+            // write character
+            chars[write++] = current;
+
+            // write count if > 1
+            if(count > 1) {
+                string cnt = to_string(count);
+                for(char c : cnt) {
+                    chars[write++] = c;
+                }
+            }
+        }
+
+        return write;
+    }
+};
+
+
